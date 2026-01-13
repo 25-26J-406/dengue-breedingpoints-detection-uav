@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UAV Waste Detection</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>🚁 Drone Waste Detection System</h1>
+    <input type="file" id="imageInput">
+    <button onclick="uploadImage()">Detect Waste</button>
+
+    <div id="resultArea" style="margin-top: 20px;">
+        <img id="outputImage" style="max-width: 600px; display: none;">
+        <pre id="jsonOutput"></pre>
+    </div>
+
+    <script>
+        async function uploadImage() {
+            let file = document.getElementById('imageInput').files[0];
+            let formData = new FormData();
+            formData.append('image', file);
+
+            let response = await fetch('/detect', {method: 'POST', body: formData});
+            let data = await response.json();
+
+            if(data.image_url) {
+                document.getElementById('outputImage').src = data.image_url;
+                document.getElementById('outputImage').style.display = 'block';
+                document.getElementById('jsonOutput').innerText = JSON.stringify(data.detections, null, 2);
+            } else {
+                alert(data.message);
+            }
+        }
+    </script>
+</body>
+</html>

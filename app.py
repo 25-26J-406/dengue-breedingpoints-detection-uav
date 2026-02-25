@@ -67,7 +67,7 @@ VALID_CLASSES = [
 # Set GDRIVE_MODEL_ID in your environment/.env file
 # Get it from your Google Drive share link:
 #   https://drive.google.com/file/d/FILE_ID_HERE/view
-GDRIVE_MODEL_ID = os.environ.get("14gzFlrIcwXQTPFndRPYAyKwIEQlEi3UD", "")
+GDRIVE_MODEL_ID = os.environ.get("1R4QrQmE91mD4TNvFH3RSLIcMEEeSLJYM", "")
 
 def download_model_if_missing():
     """Download best.pt from Google Drive if not present locally."""
